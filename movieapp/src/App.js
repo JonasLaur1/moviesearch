@@ -25,8 +25,9 @@ const App = () => {
 
   const addFavoriteMovie = (movie) => {
     const newFavoriteList = [...favorites, movie];
-    setFavorites(newFavoriteList);
-    saveToLocalStorage(newFavoriteList);
+    const uniqueFavoriteList = Array.from(new Set(newFavoriteList));
+    setFavorites(uniqueFavoriteList);
+    saveToLocalStorage(uniqueFavoriteList);
   }
 
   const removeFavoriteMovie = (movie) => {
