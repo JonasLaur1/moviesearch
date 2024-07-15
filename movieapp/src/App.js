@@ -1,24 +1,24 @@
+// src/App.js
 import React, { useEffect, useState } from 'react';
-import MovieList from './components/MovieList';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
-import MovieListHeading from './components/MovieListHeading';
-import SearchBox from './components/SearchBox';
-import AddFavorites from './components/AddFavorites';
-import RemoveFavorites from './components/RemoveFavorites';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import FavoritesPage from './pages/FavoritesPages';
+import Header from './components/Header';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [favorites, setFavorites] = useState([]);
 
-  const getMovieRequest = async () => {
+  const getMovieRequest = async (searchValue) => {
     const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=263d22d8`;
 
     const response = await fetch(url);
     const responseJson = await response.json();
 
-    if(responseJson.Search){
+    if (responseJson.Search) {
       setMovies(responseJson.Search);
     }
   }
@@ -53,27 +53,17 @@ const App = () => {
     localStorage.setItem('react-movie-app-favorites', JSON.stringify(items));
   }
 
-  return(
+  return (
     <div className='container-fluid movie-app'>
-
-      <div className='row d-flex align-items-center mt-4 mb-4'>
-        <MovieListHeading heading='Movies' />
-        <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
-      </div>
-
-      <div className='row'>
-        <MovieList movies={movies} addFavoriteMovie={addFavoriteMovie} favoriteComponent={AddFavorites}/>
-      </div>
-
-      <div className='row d-flex align-items-center mt-4 mb-4'>
-        <MovieListHeading heading='Favorites' />
-      </div>
-      <div className='row'>
-      <MovieList movies={favorites} addFavoriteMovie={removeFavoriteMovie} favoriteComponent={RemoveFavorites}/>
-      </div>
-
+      <BrowserRouter>
+        <Header searchValue={searchValue} setSearchValue={setSearchValue} />
+        <Routes>
+          <Route path='/' element={<Home movies={movies} searchValue={searchValue} setSearchValue={setSearchValue} addFavoriteMovie={addFavoriteMovie} />} />
+          <Route path='/favorites' element={<FavoritesPage favorites={favorites} removeFavoriteMovie={removeFavoriteMovie} />} />
+        </Routes>
+      </BrowserRouter>
     </div>
-  )
+  );
 }
 
 export default App;
