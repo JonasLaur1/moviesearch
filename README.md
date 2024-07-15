@@ -21,7 +21,6 @@ The React Movie App is a user-friendly application that allows users to search f
 ## Improvements
 
 - Better styling
-- Separate page for favorites
 
 
 ## Run Locally
