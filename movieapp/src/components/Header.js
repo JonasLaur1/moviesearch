@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SearchBox from './SearchBox';
-import '../App.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min'; // Ensure this import is at the top if not already in index.js or App.js
 
 const Header = ({ searchValue, setSearchValue }) => {
   const location = useLocation();
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">MovieApp</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

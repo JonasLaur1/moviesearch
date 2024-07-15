@@ -1,8 +1,9 @@
 
 body{
-    background: #141414;
+    background: #394867;
     color: white;
     overflow-x: hidden;
+    padding-top: 60px;
   }
   
   .movie-app > .row{
@@ -15,33 +16,42 @@ body{
     scrollbar-width: thin;
   }
   
-  image-container{
+  .image-container {
     position: relative;
     transition: transform 0.2s;
+    width: 100%; /* Ensures the container fills its parent by width */
+    max-width: 300px; /* Limits the width to prevent overly large boxes */
+    margin: 0 auto; /* Centers the container and removes side margins */
   }
   
-  .image-container:hover{
+  .image-container:hover {
     cursor: pointer;
-    transform: scale(1.1);
-    
+    transform: scale(1.05);
   }
   
-  .image-container:hover .overlay{
+  .image-container:hover .overlay {
     opacity: 1;
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
   
-  .overlay{
+  .overlay {
     position: absolute;
     background: rgba(0, 0, 0, 0.8);
     width: 100%;
+    height: 60px;
     transition: 0.5s ease;
     opacity: 0;
     bottom: 0;
-    font-size: 20px;
-    padding: 20px;
+    font-size: 16px;
+    padding: 10px;
     text-align: center;
   }
+  
+  .col-sm.mb-4 {
+    padding: 0 6px;
+    margin-bottom: 16px;
+  }
+  
 
   .search-box {
     width: 500px;
@@ -49,5 +59,5 @@ body{
 
 .navbar {
   width: 100%;
-  background: #141414;
+  background: #1E2A47;
 }
